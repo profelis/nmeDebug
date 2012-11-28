@@ -1,8 +1,6 @@
 package ;
 /**
- * User: Dima Grametchi
- * Date: 4/16/11
- * Time: 2:37 PM
+ * @author Dima Granetchi <system.grand@gmail.com>
  */
 import de.polygonal.core.log.Log;
 

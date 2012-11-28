@@ -3,7 +3,7 @@ package ;
 import de.polygonal.core.log.Log;
 
 /**
- * @author Dima Granetchi <system.grand@gmail.com>, <deep@e-citrus.ru>
+ * @author Dima Granetchi <system.grand@gmail.com>
  */
 class NetDeb
 {
