@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <app file="main" title="nmeDebug" main="Main" package="md.deep.nmeTest"/>
+
+    <window background="0xCCCCCC" fps="30" width="800" height="600"/>
+
+    <haxelib name="nme"/>
+    <haxelib name="polygonal-ds"/>
+
+    <classpath name="src"/>
+    <classpath name="../polygonal-core/src"/>
+
+    <set name="BUILD_DIR" value="bin" />
+
+    <compilerflag name="-D log"/>
+    <compilerflag name="-D netLog"/>
+    <compilerflag name="-D fdb"/>
+    <compilerflag name="-debug"/>
+    <compilerflag name="--js-modern"/>
+    <compilerflag name="--dead-code-elimination"/>
+
+</project>
