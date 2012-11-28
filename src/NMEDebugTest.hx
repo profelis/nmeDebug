@@ -12,7 +12,7 @@ import deep.nme.debug.NMEDebug;
 import de.polygonal.core.Root;
 import nme.display.Sprite;
 
-class Main extends Sprite
+class NMEDebugTest extends Sprite
 {
     public function new()
     {
@@ -25,16 +25,16 @@ class Main extends Sprite
         Deb.logger = Root.log;
         NetDeb.logger = Root.log;
 
-        var b = new BitmapData(30, 200, false);
+        var b = new BitmapData(30, 30, false);
         b.fillRect(b.rect, 0x00FFFF);
 
         Deb.info(b);
 
-        var m = new Main();
+        var m = new NMEDebugTest();
         nme.Lib.current.addChild(m);
         m.addChild(new Bitmap(b));
 
         var t = new Timer(1000);
-        t.run = function () {Deb.debug(m); t.stop();}
+        t.run = function () {trace(b);}
     }
 }

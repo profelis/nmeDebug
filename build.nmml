@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 
-    <app file="main" title="nmeDebug" main="Main" package="md.deep.nmeTest"/>
+    <app file="main" title="nmeDebug" main="NMEDebugTest" package="md.deep.nmeTest"/>
 
     <window background="0xCCCCCC" fps="30" width="800" height="600"/>
 
