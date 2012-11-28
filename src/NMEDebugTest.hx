@@ -4,6 +4,7 @@ package ;
  *  @author Dima Granetchi <system.grand@gmail.com>
  */
 
+import de.polygonal.core.fmt.Dump;
 import haxe.Log;
 import nme.display.Bitmap;
 import haxe.Timer;
@@ -40,6 +41,6 @@ class NMEDebugTest extends Sprite
         var a = {a:1, b:2, c:m};
         trace(a);
         trace(Std.string(a));
-        trace(de.polygonal.core.fmt.Dump.object(a));
+        trace(Dump.object(a));
     }
 }
