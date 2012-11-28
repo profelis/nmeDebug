@@ -90,22 +90,24 @@ class NMEDebug extends Sprite
         logHandler.free();
         logHandler = null;
 
-        if (contains(cont)) removeChild(cont);
-
         var s = nme.Lib.current.stage;
         s.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
         s.removeEventListener(Event.RESIZE, onResize);
         s.removeEventListener(MouseEvent.MOUSE_WHEEL, onWheel);
 
+        if (contains(cont)) removeChild(cont);
         if (parent != null) parent.removeChild(this);
     }
 
     function onResize(?_)
     {
-        graphics.clear();
-        graphics.lineStyle();
-        graphics.beginFill(config.bgColor, config.bgAlpha);
-        graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
+        if (config.bgAlpha > 0)
+        {
+            graphics.clear();
+            graphics.lineStyle();
+            graphics.beginFill(config.bgColor, config.bgAlpha);
+            graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
+        }
     }
 
     function onKeyDown(e:KeyboardEvent)
@@ -135,7 +137,7 @@ class NMEDebug extends Sprite
     {
         cont.y -= delta;
         var p = preferredScroll();
-        if (cont.y < p)
+        if (cont.y <= p)
         {
             cont.y = p;
             autoScroll = true;
@@ -176,26 +178,29 @@ class NMEDebug extends Sprite
             var bd = new BitmapData(Std.int(d.width), Std.int(d.height), true, 0x00000000);
             bd.draw(d);
 
-            logBitmap(new Bitmap(bd), t);
+            logBitmap(new Bitmap(bd), t, false);
         }
 
         if (autoScroll) cont.y = preferredScroll();
     }
 
-    function logBitmap(b:Bitmap, t:TextField)
+    function logBitmap(b:Bitmap, t:TextField, extra = true)
     {
         var h = t.height;
         t.text += ", size: (" + b.width + ", " + b.height + ")";
-        t.text += ", transparent: " + b.bitmapData.transparent;
+        if (extra) t.text += ", transparent: " + b.bitmapData.transparent;
         dy += t.height - h;
 
         cont.addChild(b);
         b.y = dy;
         b.x = 11;
 
-        cont.graphics.lineStyle();
-        cont.graphics.beginFill(config.bitmapMarkerColor, config.bitmapMarkerAlpha);
-        cont.graphics.drawRect(0, dy, 10, b.height);
+        if (config.bitmapMarkerAlpha > 0)
+        {
+            cont.graphics.lineStyle();
+            cont.graphics.beginFill(config.bitmapMarkerColor, config.bitmapMarkerAlpha);
+            cont.graphics.drawRect(0, dy, 10, b.height);
+        }
 
         dy += b.height + 10;
     }
