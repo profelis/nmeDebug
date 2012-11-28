@@ -35,6 +35,6 @@ class NMEDebugTest extends Sprite
         m.addChild(new Bitmap(b));
 
         var t = new Timer(1000);
-        t.run = function () {trace(b);}
+        t.run = function () {Deb.info(b);}
     }
 }

@@ -182,8 +182,10 @@ class NMEDebug extends Sprite
 
     function logBitmap(b:Bitmap, t:TextField)
     {
+        var h = t.height;
         t.text += ", size: (" + b.width + ", " + b.height + ")";
         t.text += ", transparent: " + b.bitmapData.transparent;
+        dy += t.height - h;
 
         cont.addChild(b);
         b.y = dy;

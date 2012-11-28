@@ -13,16 +13,18 @@ class Deb
     static public var logger(default, default):Log;
 
     #if log
+    static public var log:Dynamic = Reflect.makeVarArgs(_debug);
     static public var info:Dynamic = Reflect.makeVarArgs(_info);
     static public var debug:Dynamic = Reflect.makeVarArgs(_debug);
     static public var warn:Dynamic = Reflect.makeVarArgs(_warn);
     static public var error:Dynamic = Reflect.makeVarArgs(_error);
     #else
+    inline static public function log(a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic):Void {}
     inline static public function info(a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic):Void {}
     inline static public function debug(a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic):Void {}
     inline static public function warn(a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic):Void {}
     inline static public function error(a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic):Void {}
-#end
+    #end
 
     inline static public function _info(args:Array<Dynamic>):Void
     {
