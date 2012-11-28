@@ -35,6 +35,11 @@ class NMEDebugTest extends Sprite
         m.addChild(new Bitmap(b));
 
         var t = new Timer(1000);
-        t.run = function () {Deb.info(b);}
+        t.run = function () {Deb.info(b); t.stop(); }
+
+        var a = {a:1, b:2, c:m};
+        trace(a);
+        trace(Std.string(a));
+        trace(de.polygonal.core.fmt.Dump.object(a));
     }
 }

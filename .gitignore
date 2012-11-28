@@ -2,3 +2,5 @@ bin
 .idea
 .build
 nmeDebug.iml
+*.sublime-project
+*.sublime-workspace

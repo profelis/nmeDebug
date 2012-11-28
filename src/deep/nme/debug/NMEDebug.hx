@@ -22,10 +22,9 @@ import de.polygonal.core.log.LogMessage;
 class NMEDebugConfig
 {
     public var bgColor = 0xFFFFFF;
-    public var bgAlpha = 1;
+    public var bgAlpha = 0.6;
 
-    public var hideKeyCode:#if flash UInt #else Int #end = 106; // *
-
+    public var hideKeyCodes:Array<Int>;
     public var lineScroll = 20;
     public var pageScroll = 200;
 
@@ -34,7 +33,10 @@ class NMEDebugConfig
 
     public var xOffset = 1;
 
-    public function new() {}
+    public function new()
+    {
+        hideKeyCodes = [106, 192]; // ~ *
+    }
 }
 
 class NMEDebug extends Sprite
@@ -108,7 +110,7 @@ class NMEDebug extends Sprite
 
     function onKeyDown(e:KeyboardEvent)
     {
-        if (e.keyCode == config.hideKeyCode)
+        if (Lambda.has(config.hideKeyCodes, e.keyCode))
         {
             visible = !visible;
         }
