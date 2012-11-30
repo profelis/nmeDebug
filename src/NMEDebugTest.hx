@@ -4,6 +4,7 @@ package ;
  *  @author Dima Granetchi <system.grand@gmail.com>
  */
 
+import nme.events.KeyboardEvent;
 import haxe.Log;
 import nme.display.Bitmap;
 import haxe.Timer;
@@ -21,25 +22,18 @@ class NMEDebugTest extends Sprite
 
     @:keep static function main()
     {
-        NMEDebug.init();
+	    var c =new NMEDebugConfig();
+	    c.hideKeyCodes = [];
+        NMEDebug.init(c);
         Deb.logger = Root.log;
-        NetDeb.logger = Root.log;
 
-        var b = new BitmapData(30, 30, false);
-        b.fillRect(b.rect, 0x00FFFF);
+	    var s = nme.Lib.current.stage;
 
-        Deb.info(b);
-
-        var m = new NMEDebugTest();
-        nme.Lib.current.addChild(m);
-        m.addChild(new Bitmap(b));
-
-        var t = new Timer(1000);
-        t.run = function () {Deb.info(b); t.stop(); }
-
-        var a = {a:1, b:2, c:m};
-        trace(a);
-        trace(Std.string(a));
-        trace(de.polygonal.core.fmt.Dump.object(a));
+	    s.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
     }
+
+	static function onKeyDown(e:KeyboardEvent)
+	{
+		trace(Dump.dumpFields(e, ["keyCode", "charCode", "keyLocation"]));
+	}
 }

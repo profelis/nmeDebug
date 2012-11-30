@@ -41,9 +41,9 @@ class NMEDebugConfig
 
 class NMEDebug extends Sprite
 {
-    static public function init(keepNativeTrace = false):NMEDebug
+    static public function init(config:NMEDebugConfig = null, keepNativeTrace = false):NMEDebug
     {
-        var d = new NMEDebug();
+        var d = new NMEDebug(config);
         nme.Lib.current.stage.addChild(d);
 
         Root.init([d.logHandler], keepNativeTrace);
