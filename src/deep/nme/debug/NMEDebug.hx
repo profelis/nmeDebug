@@ -178,10 +178,17 @@ class NMEDebug extends Sprite
 		{
 			var d:DisplayObject = cast msg.data;
 			var r = d.getBounds(d);
-			var bd = new BitmapData(Std.int(r.width), Std.int(r.height), true, 0x00000000);
-			bd.draw(d, new Matrix(1, 0, 0, 1, -r.x, -r.y), null, null, null, true);
+			if (r.width > 0 && r.height > 0)
+			{
+				var bd = new BitmapData(Math.ceil(r.width), Math.ceil(r.height), true, 0x00000000);
+				bd.draw(d, new Matrix(1, 0, 0, 1, -r.x, -r.y), null, null, null, true);
 
-			logBitmap(new Bitmap(bd), t, r);
+				logBitmap(new Bitmap(bd), t, r);
+			}
+			else
+			{
+				logBitmap(null, t, r);
+			}
 		}
 
 		if (autoScroll) cont.y = preferredScroll();
@@ -201,18 +208,21 @@ class NMEDebug extends Sprite
 		}
 		dy += t.height - h;
 
-		cont.addChild(b);
-		b.y = dy;
-		b.x = 11;
-
-		if (config.bitmapMarkerAlpha > 0)
+		if (b != null)
 		{
-			cont.graphics.lineStyle();
-			cont.graphics.beginFill(config.bitmapMarkerColor, config.bitmapMarkerAlpha);
-			cont.graphics.drawRect(0, dy, 10, b.height);
-		}
+			cont.addChild(b);
+			b.y = dy;
+			b.x = 11;
 
-		dy += b.height + 10;
+			if (config.bitmapMarkerAlpha > 0)
+			{
+				cont.graphics.lineStyle();
+				cont.graphics.beginFill(config.bitmapMarkerColor, config.bitmapMarkerAlpha);
+				cont.graphics.drawRect(0, dy, 10, b.height);
+			}
+
+			dy += b.height + 10;
+		}
 	}
 
 	inline function preferredScroll()

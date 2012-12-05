@@ -31,8 +31,6 @@ class NMEDebugTest extends Sprite
 
 		var sh = new nme.display.Shape();
 		sh.graphics.lineStyle();
-		sh.graphics.beginFill(0xFF0000);
-		sh.graphics.drawCircle(0, 0, 50);
 
 		trace(sh);
 
