@@ -170,10 +170,6 @@ class NMEDebug extends Sprite
 		{
 			logBitmap(new Bitmap(cast msg.data), t);
 		}
-		else if (Std.is(msg.data, Bitmap))
-		{
-			logBitmap(cast msg.data, t);
-		}
 		else if (Std.is(msg.data, DisplayObject))
 		{
 			var d:DisplayObject = cast msg.data;
