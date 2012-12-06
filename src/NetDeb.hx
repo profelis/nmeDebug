@@ -4,6 +4,7 @@ package ;
  * @author Dima Granetchi <system.grand@gmail.com>
  */
 
+import haxe.PosInfos;
 import de.polygonal.core.log.Log;
 
 class NetDeb
