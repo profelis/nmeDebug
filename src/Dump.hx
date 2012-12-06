@@ -8,14 +8,15 @@ class Dump
 {
 	function new() {}
 
-	static public function dumpFields(data:Dynamic, fields:Array<String>):String
+	static public function dumpFields(data:Dynamic, fields:Array<String>, ?format:Dynamic -> String):String
 	{
-		var res = new StringBuf();
+		var res = new Array<String>();
 		for (f in fields)
 		{
-			res.add(f + ":" + Reflect.field(data, f) + ", ");
+			var d = Reflect.field(data, f);
+			res.push(f + ":" + (format != null ? format(d) : d));
 		}
 
-		return res.toString();
+		return res.join(", ");
 	}
 }

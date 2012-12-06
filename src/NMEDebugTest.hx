@@ -29,14 +29,19 @@ class NMEDebugTest extends Sprite
 
 		var s = nme.Lib.current.stage;
 
-		var sh = new nme.display.Shape();
-		sh.graphics.lineStyle();
-		sh.graphics.beginFill(0xFF0000);
-		sh.graphics.drawCircle(0, 0, 50);
-
-		trace(sh);
-
 		s.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+
+		var r = flash.net.SharedObject.getLocal("test");
+		if (Reflect.fields(r.data).length == 0)
+		{
+			r.data.a = 1;
+			r.data.b = "test";
+			r.data.c = [1, 2];
+			r.flush();
+		}
+
+		trace(Std.string(r.data));
+		trace(r.size);
 	}
 
 	static function onKeyDown(e:KeyboardEvent)
