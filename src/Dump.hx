@@ -6,7 +6,10 @@ package ;
 
 class Dump
 {
-	function new() {}
+	static inline public function dump(obj:Dynamic):String
+	{
+		return Std.string(obj);
+	}
 
 	static public function dumpFields(data:Dynamic, fields:Array<String>, ?format:Dynamic -> String):String
 	{
