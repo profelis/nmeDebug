@@ -13,13 +13,19 @@ class Dump
 
 	static public function dumpFields(data:Dynamic, fields:Array<String>, ?format:Dynamic -> String):String
 	{
-		var res = new Array<String>();
-		for (f in fields)
+		switch (Type.typeof(data))
 		{
-			var d = Reflect.field(data, f);
-			res.push(f + ":" + (format != null ? format(d) : d));
-		}
+			case TObject, TClass(_), TEnum(_), TUnknown:
 
-		return res.join(", ");
+				var res = new Array<String>();
+				for (f in fields)
+				{
+					var d = Reflect.field(data, f);
+					res.push(f + ":" + (format != null ? format(d) : d));
+				}
+				return res.join(", ");
+
+			default: return dump(data);
+		}
 	}
 }

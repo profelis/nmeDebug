@@ -23,8 +23,10 @@ import de.polygonal.core.log.LogMessage;
 
 class NMEDebugConfig
 {
-	public var bgColor = 0xFFFFFF;
-	public var bgAlpha = 0.6;
+	public var bgColor = 0xC6E2FF;
+	public var bgAlpha = 1;
+
+	public var textColor = 0x000000;
 
 	public var hideKeyCodes:Array<Int>;
 	public var lineScroll = 20;
@@ -49,6 +51,10 @@ class NMEDebug extends Sprite
 		nme.Lib.current.stage.addChild(d);
 
 		Root.init([d.logHandler], keepNativeTrace);
+		var msg = "NMEDebug panel initialized";
+		if (d.config.hideKeyCodes.length > 0) msg += ": press key " + d.config.hideKeyCodes.join(" or ") + " to hide panel";
+		Root.debug(msg);
+
 		return d;
 	}
 
@@ -161,6 +167,7 @@ class NMEDebug extends Sprite
 		t.multiline = t.wordWrap = true;
 		t.autoSize = TextFieldAutoSize.LEFT;
 		t.selectable = true;
+		t.textColor = config.textColor;
 		t.text = s;
 		t.y = dy;
 		cont.addChild(t);

@@ -42,10 +42,15 @@ class NMEDebugTest extends Sprite
 
 		trace(Std.string(r.data));
 		trace(r.size);
+
+		trace(Dump.dumpFields(2, ["a"]));
+		trace(Dump.dumpFields("as", ["length"]));
+		trace(Dump.dumpFields(null, ["length"]));
+		trace(Dump.dumpFields([1, 2], ["length"]));
 	}
 
 	static function onKeyDown(e:KeyboardEvent)
 	{
-		trace(Dump.dumpFields(e, ["keyCode", "charCode", "keyLocation"]));
+		Deb.debug(Dump.dumpFields(e, ["keyCode", "charCode", "keyLocation"]));
 	}
 }
