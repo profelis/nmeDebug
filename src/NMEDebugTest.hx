@@ -4,6 +4,7 @@ package ;
  *  @author Dima Granetchi <system.grand@gmail.com>
  */
 
+import deep.nme.debug.Dump;
 import nme.events.KeyboardEvent;
 import haxe.Log;
 import nme.display.Bitmap;

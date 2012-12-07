@@ -134,14 +134,14 @@ class NMEDebug extends Sprite
 		}
 	}
 
-	inline function scrollUp(delta:Float)
+	function scrollUp(delta:Float)
 	{
 		cont.y += delta;
 		if (cont.y > 0) cont.y = 0;
 		autoScroll = false;
 	}
 
-	inline function scrollDown(delta:Float)
+	function scrollDown(delta:Float)
 	{
 		cont.y -= delta;
 		var p = preferredScroll();
@@ -228,7 +228,7 @@ class NMEDebug extends Sprite
 		}
 	}
 
-	inline function preferredScroll()
+	inline function preferredScroll():Float
 	{
 		return Math.min(0, stage.stageHeight - dy);
 	}

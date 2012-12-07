@@ -1,4 +1,4 @@
-package ;
+package deep.nme.debug;
 
 /**
  *  @author Dima Granetchi <system.grand@gmail.com>, <deep@e-citrus.ru>
