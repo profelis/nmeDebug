@@ -4,6 +4,8 @@ package deep.nme.debug;
  *  @author Dima Granetchi <system.grand@gmail.com>
  */
 
+import Lambda;
+
 import nme.geom.Matrix;
 import nme.display.Bitmap;
 import nme.events.MouseEvent;
@@ -20,6 +22,8 @@ import nme.display.Sprite;
 
 import de.polygonal.core.Root;
 import de.polygonal.core.log.LogMessage;
+
+using Lambda;
 
 class NMEDebugConfig
 {
@@ -61,8 +65,8 @@ class NMEDebug extends Sprite
 	public var logHandler(default, null):NMEDebugHandler;
 
 	var cont:Sprite;
-	var dy:Float = 0;
-	var autoScroll:Bool = true;
+	var dy = 0.0;
+	var autoScroll = true;
 
 	var config:NMEDebugConfig;
 
@@ -92,11 +96,15 @@ class NMEDebug extends Sprite
 
 	public function dispose()
 	{
+		if (logHandler != null)
+		{
+			var l = logHandler;
+			logHandler = null;
+			l.free();
+		}
 		if (config == null) return;
 
 		config = null;
-		logHandler.free();
-		logHandler = null;
 
 		var s = nme.Lib.current.stage;
 		s.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
@@ -120,17 +128,19 @@ class NMEDebug extends Sprite
 
 	function onKeyDown(e:KeyboardEvent)
 	{
-		if (Lambda.has(config.hideKeyCodes, e.keyCode))
+		if (config.hideKeyCodes.has(e.keyCode))
 		{
 			visible = !visible;
 		}
-		else if (e.keyCode == Keyboard.UP || e.keyCode == Keyboard.PAGE_UP)
+		else
 		{
-			scrollUp(e.keyCode == Keyboard.UP ? config.lineScroll : config.pageScroll);
-		}
-		else if (e.keyCode == Keyboard.DOWN || e.keyCode == Keyboard.PAGE_DOWN)
-		{
-			scrollDown(e.keyCode == Keyboard.DOWN ? config.lineScroll : config.pageScroll);
+			switch(e.keyCode)
+			{
+				case Keyboard.UP: scrollUp(config.lineScroll);
+				case Keyboard.PAGE_UP: scrollUp(config.pageScroll);
+				case Keyboard.DOWN: scrollDown(config.lineScroll);
+				case Keyboard.PAGE_DOWN: scrollDown(config.pageScroll);
+			}
 		}
 	}
 
@@ -228,7 +238,7 @@ class NMEDebug extends Sprite
 		}
 	}
 
-	inline function preferredScroll():Float
+	@:extern inline function preferredScroll():Float
 	{
 		return Math.min(0, stage.stageHeight - dy);
 	}

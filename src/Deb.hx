@@ -15,35 +15,35 @@ class Deb
 	inline static public function log(a:Dynamic, ?posInfos:PosInfos):Void
 	{
 		#if log
-		if (logger != null) logger.debug(a, posInfos);
+		logger.debug(a, posInfos);
 		#end
 	}
 
 	inline static public function info(a:Dynamic, ?posInfos:PosInfos):Void
 	{
 		#if log
-		if (logger != null) logger.info(a, posInfos);
+		logger.info(a, posInfos);
 		#end
 	}
 
 	inline static public function debug(a:Dynamic, ?posInfos:PosInfos):Void
 	{
 		#if log
-		if (logger != null) logger.debug(a, posInfos);
+		logger.debug(a, posInfos);
 		#end
 	}
 
 	inline static public function warn(a:Dynamic, ?posInfos:PosInfos):Void
 	{
 		#if log
-		if (logger != null) logger.warn(a, posInfos);
+		logger.warn(a, posInfos);
 		#end
 	}
 
 	inline static public function error(a:Dynamic, ?posInfos:PosInfos):Void
 	{
 		#if log
-		if (logger != null) logger.error(a, posInfos);
+		logger.error(a, posInfos);
 		#end
 	}
 }

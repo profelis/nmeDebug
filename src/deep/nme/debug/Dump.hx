@@ -20,7 +20,7 @@ class Dump
 				var res = new Array<String>();
 				for (f in fields)
 				{
-					var d = Reflect.field(data, f);
+					var d = Reflect.getProperty(data, f);
 					res.push(f + ":" + (format != null ? format(d) : d));
 				}
 				return res.join(", ");
