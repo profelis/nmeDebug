@@ -9,7 +9,6 @@
     <haxelib name="polygonal-ds"/>
 
     <classpath name="src"/>
-    <classpath name="../polygonal-core/src"/>
 
     <set name="BUILD_DIR" value="bin" />
 
