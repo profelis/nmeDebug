@@ -54,7 +54,7 @@ class NMEDebug extends Sprite
 		var d = new NMEDebug(config);
 		nme.Lib.current.stage.addChild(d);
 
-		Root.init([d.logHandler], keepNativeTrace);
+		Root.initLog([d.logHandler], keepNativeTrace);
 		var msg = "NMEDebug panel initialized";
 		if (d.config.hideKeyCodes.length > 0) msg += ": press key " + d.config.hideKeyCodes.join(" or ") + " to hide panel";
 		Root.debug(msg);
